@@ -1,10 +1,10 @@
-FROM uqlibrary/alpine:edge-20200626
+FROM uqlibrary/alpine:3.13.1
 
-ENV COMPOSER_VERSION=1.10.8
+ENV COMPOSER_VERSION=2.0.9
 ENV PRESTISSIMO_VERSION=0.3.10
-ENV XDEBUG_VERSION=2.9.6
-ENV IGBINARY_VERSION=3.1.2
-ENV NEWRELIC_VERSION=9.11.0.267
+ENV XDEBUG_VERSION=2.9.8
+ENV IGBINARY_VERSION=3.2.1
+ENV NEWRELIC_VERSION=9.16.0.295
 ENV PHP_MEMCACHED_VERSION=3.1.5
 ENV NR_INSTALL_SILENT=1
 ENV NR_INSTALL_PHPLIST=/usr/bin
@@ -53,9 +53,12 @@ RUN apk add --update --no-cache \
     && cd \
     && rm -rf /tmp/* \
     #
-    # Composer
+    ## Composer 1.x
+    ##&& curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
+    ##&& composer global require "hirak/prestissimo:${PRESTISSIMO_VERSION}" \
+    #
+    # Composer 2.x
     && curl -sS https://getcomposer.org/installer | php7 -- --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} \
-    && composer global require "hirak/prestissimo:${PRESTISSIMO_VERSION}" \
     #
     # NewRelic (disabled by default)
     && mkdir -p /opt && cd /opt \
