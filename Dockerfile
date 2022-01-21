@@ -1,4 +1,4 @@
-FROM uqlibrary/alpine:3.13.1
+FROM uqlibrary/alpine:3.15.0
 
 ENV COMPOSER_VERSION=2.0.12
 ENV NEWRELIC_VERSION=9.16.0.295
